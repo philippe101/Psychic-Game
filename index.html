@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Psychic-Game</title>
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+</head>
+<body>
+
+	<h1>The Psychic Game</h1>
+	
+	<div id = "game">	
+		<strong><p>Guess what letter I'm thinking of...</p>
+		<p> Wins: </p>
+		<p> Losses: </p>
+		<p> Guesses Left: </p>
+		<p> Your Guesses so far: </p></strong>
+	</div>
+
+	<!-- I need to set up a randomizer for the comnputer to choose letters
+	when user presses a key computer chooses at random one of 26 letters.
+	If userguess and computerGuess match it's a win.
+	If userguess and computerGuess don't match it's a loss.
+	User only has 9 tries before loss.
+ -->
+
+	<script type="text/javascript">
+
+	var options = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+	var wins = 0;
+	var losses = 0;
+	var guessesleft = 9;
+	var yourguessessofar = ""; 
+		// how to record guesses? after 9 tries guesses left should reset and losses should add 1.
+	document.onkeyup = function(event) {
+		var userguess = String.fromCharCode(event.keyCode).
+		toLowerCase();
+		// only lower case letters (options)
+
+		console.log(userguess);
+
+		var computerGuess = options[Math.floor(Math.random()* options.length)];
+			yourguessessofar.push;
+
+		console.log(computerGuess);
+
+		if (userguess == computerGuess) {
+			wins++;
+			guessesleft = 9;
+			yourguessessofar++;
+		}
+		if (userguess !== computerGuess) {
+			// losses;
+			guessesleft--;
+			yourguessessofar++;
+		}
+
+		if (guessesleft == 0) {
+			losses++;
+			guessesleft = 9;
+			yourguessessofar=0;
+			// after 9 tries reset guessesleft to 9 and add 1 to losses.
+			// yourguessessofar= 0;
+		}
+
+		var html = "<p>Guess what letter I'm thinking of...</p>" + "<p> Wins:" + wins + "</p>" + "<p> Losses:" + losses + "</p>" + "<p> Guesses Left:" + guessesleft + "</p>" + "<p> Your Guesses so far:" + yourguessessofar + "</p>";
+
+		document.querySelector("#game").innerHTML = html;
+
+	}
+
+
+	</script>
+
+</body>
+</html>
